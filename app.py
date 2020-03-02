@@ -1,3 +1,4 @@
+import os
 import plotly.graph_objects as do
 import pandas as pd
 import numpy as np
@@ -5,6 +6,9 @@ import json
 from matplotlib.colors import Normalize
 from matplotlib import cm
 import streamlit as st
+
+token_map= os.environ.get('MAPBOX_TOKEN')
+style_map= os.environ.get('MAPBOX_STYLE')
 
 @st.cache
 def load_data():
@@ -60,8 +64,8 @@ def fsortscale(data,colorscale):
 	return [d['colored'] for d in mapped]
 	
 def main():
-	map_token = 'pk.eyJ1IjoibmVpbHRoZWdyZWF0ZXN0IiwiYSI6ImNrM2ZqMmhvNjAzN2QzbW5uaHQyamo5NGkifQ.l53kgbZcDGY8U8xHkSWv0w'
-	map_style = 'mapbox://styles/neilthegreatest/ck5uymies43dg1iqko1h41v1f'
+	map_token = token_map
+	map_style = style_map
 
 	datax = load_data()
 	map_json = load_json()
